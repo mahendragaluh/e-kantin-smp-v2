@@ -1,4 +1,4 @@
-@extends('admin.panel')
+@extends('section.panel')
 
 @section('content')
     @auth
@@ -116,20 +116,22 @@
                                                 <th style="width: 25%">Action</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($levels as $level)
-                                            <tbody>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $level->id }}</td>
-                                                <td>{{ $level->name_level }}</td>
-                                                <td>
-                                                    <a href="" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                        data-target="#modal-edit-{{ $level->id }}">
-                                                        <i class="fa fa-edit"></i>
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            </tbody>
-                                        @endforeach
+                                        <tbody>
+                                            @foreach ($levels as $level)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $level->id }}</td>
+                                                    <td>{{ $level->name_level }}</td>
+                                                    <td>
+                                                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#modal-edit-{{ $level->id }}">
+                                                            <i class="fa fa-edit"></i>
+                                                            Edit
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>No.</th>

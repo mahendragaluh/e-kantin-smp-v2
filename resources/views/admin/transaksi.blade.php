@@ -45,7 +45,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach ($levels as $level)
+                                            {{-- @foreach ($levels as $level)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $level->id }}</td>
@@ -58,9 +58,8 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
-
                                         <tfoot>
                                             <tr>
                                                 <th style="width: 7%">No.</th>

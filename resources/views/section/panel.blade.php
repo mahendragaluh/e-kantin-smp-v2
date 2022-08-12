@@ -43,10 +43,10 @@
                 width="60">
         </div> --}}
 
-        @include('admin.header')
-        @include('admin.sidebar')
+        @include('section.header')
+        @include('section.sidebar')
         @yield('content')
-        @include('admin.footer')
+        @include('section.footer')
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -67,6 +67,8 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{ asset('lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <!-- ChartJS -->
     <script src="{{ asset('lte/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
@@ -104,7 +106,16 @@
     {{-- <script src="{{ asset ('lte/dist/js/demo.js') }}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js') }}"></script>
-
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
+    <script>
+        $('#modal-insert-menu').on('hidden.bs.modal', function() {
+            $('#modal-insert-menu form')[0].reset();
+        });
+    </script>
     <script>
         $(function() {
             $("#datatabel-users").DataTable({

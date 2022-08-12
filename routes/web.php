@@ -25,4 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('pengguna/level', [App\Http\Controllers\Admin\HomeAdmin::class, 'level'])->name('pengguna.level');
     Route::post('/pengguna/level', [App\Http\Controllers\Admin\HomeAdmin::class, 'store_level'])->name('store.level');
     Route::post('/pengguna/level{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'update_level'])->name('update.level');
+    Route::get('menu', [App\Http\Controllers\Admin\HomeAdmin::class, 'menu'])->name('menu.admin');
+    Route::post('/menu', [App\Http\Controllers\Admin\HomeAdmin::class, 'store_menu'])->name('store.menu');
+    Route::post('/menu{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'update_menu'])->name('update.menu');
+    Route::delete('/menu{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'destroy_menu'])->name('destroy.menu');
 });

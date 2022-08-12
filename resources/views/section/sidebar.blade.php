@@ -35,6 +35,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('menu*') ? 'active menu-open' : '' }}">
+                    <a href="/menu" class="nav-link {{ request()->is('menu*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>
+                            Menu
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item {{ request()->is('pengguna/users*') || request()->is('pengguna/level*') ? 'active menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('pengguna/users*') || request()->is('pengguna/level*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
@@ -59,6 +67,14 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item ">
+                    <a href="" class="nav-link ">
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>
+                            Transaksi
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a href="#" class="nav-link ">
