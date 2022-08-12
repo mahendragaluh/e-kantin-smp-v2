@@ -68,11 +68,19 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item ">
-                    <a href="" class="nav-link ">
+                <li class="nav-item {{ request()->is('admin/transaksi*') ? 'active menu-open' : '' }}">
+                    <a href="/admin/transaksi" class="nav-link {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-receipt"></i>
                         <p>
                             Transaksi
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item {{ request()->is('admin/pemesanan*') ? 'active menu-open' : '' }}">
+                    <a href="/admin/pemesanan" class="nav-link {{ request()->is('admin/pemesanan*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Pemesanan
                         </p>
                     </a>
                 </li>

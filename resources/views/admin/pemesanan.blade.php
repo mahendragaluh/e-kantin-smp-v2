@@ -9,7 +9,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Transaksi</h1>
+                            <h1 class="m-0">Pemesanan</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">View Data Transaksi</h3>
+                                    <h3 class="card-title">View Data Pemesanan</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -36,14 +36,14 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 7%">No.</th>
-                                                <th style="width: 7%">ID Transaksi</th>
-                                                <th style="width: 7%">ID User</th>
                                                 <th style="width: 7%">ID Order</th>
+                                                <th style="width: 7%">Nomor Meja</th>
                                                 <th style="width: 15%">Nama Pemesan</th>
+                                                <th >Jumlah Pesan</th>
+                                                <th style="width: 7%">ID Waiter</th>
                                                 <th style="width: 15%">Menu</th>
                                                 <th style="width: 15%">Harga</th>
-                                                <th >Jumlah Pesan</th>
-                                                <th style="width: 15%">Total Bayar</th>
+                                                <th style="width: 15%">Keterangan</th>
                                             </tr>
                                         </thead>
 
@@ -65,15 +65,15 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th >No.</th>
-                                                <th >ID Transaksi</th>
-                                                <th >ID User</th>
-                                                <th >ID Order</th>
-                                                <th >Nama Pemesan</th>
-                                                <th >Menu</th>
-                                                <th >Harga</th>
+                                                <th style="width: 7%">No.</th>
+                                                <th style="width: 7%">ID Order</th>
+                                                <th style="width: 7%">Nomor Meja</th>
+                                                <th style="width: 15%">Nama Pemesan</th>
                                                 <th >Jumlah Pesan</th>
-                                                <th >Total Bayar</th>
+                                                <th style="width: 7%">ID Waiter</th>
+                                                <th style="width: 15%">Menu</th>
+                                                <th style="width: 15%">Harga</th>
+                                                <th style="width: 15%">Keterangan</th>
                                             </tr>
                                         </tfoot>
                                     </table>

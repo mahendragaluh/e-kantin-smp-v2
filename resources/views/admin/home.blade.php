@@ -27,70 +27,42 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>150</h3>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">View Data Menu</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="container w-full px-2 py-2 mx-auto col">
+                                        <div class="grid lg:grid-cols-3 gap-y-5 row">
+                                            @foreach ($menus as $menu)
+                                                <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
+                                                    <div class="card bg-light d-flex flex-fill">
+                                                        <img class="card-img-top" style="height: 200px"
+                                                            src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}"
+                                                            alt="Dist Photo 3">
+                                                        <div class="card-body pt-2">
+                                                            <div class="row-md-2">
+                                                                <div class="text-center">
+                                                                    <h4 class=""><b>{{ $menu->nama_menu }}</b></h4>
+                                                                    <h5 class="">{{ $menu->jenis_menu }}</h5>
+                                                                    <h5 class="">Rp{{ $menu->harga_menu }}</h5>
+                                                                    <h5 class="">{{ $menu->status_menu }}</h5>
+                                                                </div>
 
-                                    <p>New Orders</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                <!-- /.card-body -->
                             </div>
+                            <!-- /.card -->
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                                    <p>Bounce Rate</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>44</h3>
-
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>65</h3>
-
-                                    <p>Unique Visitors</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
                     </div>
                     <!-- /.row -->
 

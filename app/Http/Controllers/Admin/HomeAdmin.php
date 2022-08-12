@@ -17,7 +17,8 @@ class HomeAdmin extends Controller
 
     public function index()
     {
-        return view('admin.home');
+        $menus = Menu::all();
+        return view('admin.home', compact('menus'));
     }
 
     public function users(Request $request)
@@ -163,5 +164,15 @@ class HomeAdmin extends Controller
             return redirect()
                 ->back();
         }
+    }
+
+    public function transaksi()
+    {
+        return view('admin.transaksi');
+    }
+
+    public function pemesanan()
+    {
+        return view('admin.pemesanan');
     }
 }

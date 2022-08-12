@@ -38,14 +38,18 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 7%">No.</th>
-                                                <th style="width: 20%">ID Level</th>
-                                                <th style="width: 25%">Nama Level</th>
-                                                <th style="width: 25%">Action</th>
+                                                <th style="width: 7%">ID User</th>
+                                                <th style="width: 15%">Username</th>
+                                                <th style="width: 15%">Password</th>
+                                                <th style="width: 15%">Nama User</th>
+                                                <th style="width: 7%">ID Level</th>
+                                                <th style="width: 20%">Foto</th>
+                                                <th >Action</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach ($levels as $level)
+                                            {{-- @foreach ($levels as $level)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $level->id }}</td>
@@ -58,15 +62,18 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
-
                                         <tfoot>
                                             <tr>
-                                                <th style="width: 7%">No.</th>
-                                                <th style="width: 20%">ID Level</th>
-                                                <th style="width: 25%">Nama Level</th>
-                                                <th style="width: 25%">Action</th>
+                                                <th >No.</th>
+                                                <th >ID User</th>
+                                                <th >Username</th>
+                                                <th >Password</th>
+                                                <th >Nama User</th>
+                                                <th >ID Level</th>
+                                                <th >Foto</th>
+                                                <th >Action</th>
                                             </tr>
                                         </tfoot>
                                     </table>
