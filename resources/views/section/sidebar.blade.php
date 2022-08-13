@@ -18,7 +18,17 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                <span class="right badge badge-success">ADMIN</span>
+                <span class="right badge badge-success">
+                    @if (Auth::user()->level_id == '1')
+                        ADMIN
+                    @endif
+                    @if (Auth::user()->level_id == '2')
+                        KASIR
+                    @endif
+                    @if (Auth::user()->level_id == '3')
+                        WAITER
+                    @endif
+                </span>
             </div>
         </div>
 
