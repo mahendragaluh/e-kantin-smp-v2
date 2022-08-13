@@ -119,7 +119,7 @@
     <script>
         $(function() {
             $("#datatabel-users").DataTable({
-                "responsive": true,
+                "responsive": false,
                 "lengthChange": true,
                 "autoWidth": false,
                 "paging": true,

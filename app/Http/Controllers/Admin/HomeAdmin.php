@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Level;
 use App\Models\Menu;
+use App\Models\User;
 
 class HomeAdmin extends Controller
 {
@@ -23,8 +25,27 @@ class HomeAdmin extends Controller
 
     public function users(Request $request)
     {
-        $levels = Level::orderBy('id', 'ASC')->get();
-        return view('admin.pengguna.users', compact('levels'));
+        $users = User::orderBy('id', 'ASC')->get();
+        return view('admin.pengguna.users', compact('users'));
+    }
+
+    public function create_users(Request $request)
+    {
+        $addUsers = new User;
+        $addUsers->level_id = $request->level_id;
+        $addUsers->name = $request->name;
+        $addUsers->username = $request->username;
+        $addUsers->email = $request->email;
+        $addUsers->password = Hash::make($request->password);
+        $addUsers->save();
+
+        if ($addUsers) {
+            return redirect()
+                ->back();
+        } else {
+            return redirect()
+                ->back();
+        }
     }
 
     public function level()
