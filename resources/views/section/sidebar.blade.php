@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard-admin" class="brand-link text-center">
-        {{-- <img src="{{ asset ('lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8"> --}}
+    <a href="/dashboard-admin" class="brand-link">
+        <img src="{{ asset ('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image img-circle elevation-3"
+            style="width: 40px; height: 40px; object-fit: cover; opacity: .8">
         <span class="brand-text font-weight-light"><b>E-Kantin</b> SMP</span>
     </a>
 

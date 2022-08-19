@@ -41,11 +41,11 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
 });
 
 Route::middleware(['auth','CekLevel:2'])->group(function () {
-    Route::get('waiter-dashboard', [App\Http\Controllers\Waiter\WaiterController::class, 'index'])->name('dashboard.waiter');
-    Route::get('waiter/pemesanan', [App\Http\Controllers\Waiter\WaiterController::class, 'pemesanan'])->name('pemesanan.waiter');
+    Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\KasirController::class, 'index'])->name('dashboard.kasir');
+    Route::get('kasir/transaksi', [App\Http\Controllers\Kasir\KasirController::class, 'transaksi'])->name('transaksi.kasir');
 });
 
 Route::middleware(['auth','CekLevel:3'])->group(function () {
-    Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\KasirController::class, 'index'])->name('dashboard.kasir');
-    Route::get('kasir/transaksi', [App\Http\Controllers\Kasir\KasirController::class, 'transaksi'])->name('transaksi.kasir');
+    Route::get('waiter-dashboard', [App\Http\Controllers\Waiter\WaiterController::class, 'index'])->name('dashboard.waiter');
+    Route::get('waiter/pemesanan', [App\Http\Controllers\Waiter\WaiterController::class, 'pemesanan'])->name('pemesanan.waiter');
 });

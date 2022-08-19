@@ -33,7 +33,7 @@
         @endif
 
         <div class="register-logo">
-            <a href="#"><b>E-KANTIN</b> SMP</a>
+            <a href="#"><b>E-KANTIN</b> SMP NEGERI 1 SILIRAGUNG</a>
         </div>
 
         <div class="card">
