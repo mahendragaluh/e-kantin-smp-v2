@@ -25,63 +25,109 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12">
+                        @csrf
+                        <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">
+                                {{-- <div class="card-header">
                                     <h3 class="card-title">View Data Pemesanan</h3>
-                                </div>
+                                </div> --}}
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="datatabel-users" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 7%">No.</th>
-                                                <th style="width: 7%">ID Order</th>
-                                                <th style="width: 7%">Nomor Meja</th>
-                                                <th style="width: 15%">Nama Pemesan</th>
-                                                <th >Jumlah Pesan</th>
-                                                <th style="width: 7%">ID Waiter</th>
-                                                <th style="width: 15%">Menu</th>
-                                                <th style="width: 15%">Harga</th>
-                                                <th style="width: 15%">Keterangan</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            {{-- @foreach ($levels as $level)
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered projects">
+                                            <thead>
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $level->id }}</td>
-                                                    <td>{{ $level->name_level }}</td>
-                                                    <td>
-                                                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#modal-edit-{{ $level->id }}">
-                                                            <i class="fa fa-edit"></i>
-                                                            Edit
-                                                        </a>
-                                                    </td>
+                                                    <th style="width: 15%">Foto Menu</th>
+                                                    <th style="width: 15%">Menu</th>
+                                                    <th style="width: 15%">Harga</th>
+                                                    <th style="width: 15%">Jumlah</th>
+                                                    <th style="width: 15%">Total</th>
                                                 </tr>
-                                            @endforeach --}}
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th style="width: 7%">No.</th>
-                                                <th style="width: 7%">ID Order</th>
-                                                <th style="width: 7%">Nomor Meja</th>
-                                                <th style="width: 15%">Nama Pemesan</th>
-                                                <th >Jumlah Pesan</th>
-                                                <th style="width: 7%">ID Waiter</th>
-                                                <th style="width: 15%">Menu</th>
-                                                <th style="width: 15%">Harga</th>
-                                                <th style="width: 15%">Keterangan</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php $subtotal=0; foreach($keranjangs as $keranjang): ?>
+                                                <tr>
+                                                    <td><img src="{{ asset('/assets/img/menu/' . $keranjang->foto_menu) }}"
+                                                            style="width: 150px" alt="Foto Menu"></td>
+                                                    <td>{{ $keranjang->nama_menu }}</td>
+                                                    <td>Rp{{ number_format($keranjang->harga_menu, 2, ',', '.') }}</td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group" role="group">
+                                                            <form
+                                                                action="{{ route('keranjang.update', $keranjang->id_keranjang) }}"
+                                                                method="post">
+                                                                @method('patch')
+                                                                @csrf()
+                                                                <input type="hidden" name="param" value="kurang">
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    -
+                                                                </button>
+                                                            </form>
+                                                            <button class="btn btn-outline-primary btn-sm" disabled="true">
+                                                                {{ number_format($keranjang->qty) }}
+                                                            </button>
+                                                            <form
+                                                                action="{{ route('keranjang.update', $keranjang->id_keranjang) }}"
+                                                                method="post">
+                                                                @method('patch')
+                                                                @csrf()
+                                                                <input type="hidden" name="param" value="tambah">
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    +
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <?php
+                                                    $total = $keranjang->harga_menu * $keranjang->qty;
+                                                    $subtotal = $subtotal + $total;
+                                                    ?>
+                                                    <td>Rp{{ number_format($total, 2, ',', '.') }}</td>
+                                                </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th style="width: 15%">Foto Menu</th>
+                                                    <th style="width: 15%">Menu</th>
+                                                    <th style="width: 15%">Harga</th>
+                                                    <th style="width: 15%">Jumlah</th>
+                                                    <th style="width: 15%">Total</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right border-bottom mb-3">
+                                            <h3 class="text-black h4 text-uppercase">Total Harga</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-md-6">
+                                            <span class="text-black">Total</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <strong class="text-black">Rp.
+                                                {{ number_format($subtotal, 2, ',', '.') }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="{{route('user.checkout')}}" class="btn btn-primary py-3 btn-block">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->

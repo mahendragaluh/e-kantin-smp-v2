@@ -21,6 +21,31 @@
             </div>
             <!-- /.content-header -->
 
+            @foreach ($order as $o)
+                <div class="modal fade" id="modal-detail-order-{{$o->id}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Detail Order</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card-body">
+                                    {{-- @foreach ($order->detail as $detail) --}}
+
+                                    {{-- @endforeach --}}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            @endforeach
+
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -32,48 +57,45 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="datatabel-users" class="table table-bordered table-striped">
+                                    <table id="datatabel-users" class="table table-bordered table-striped projects">
                                         <thead>
                                             <tr>
-                                                <th style="width: 7%">No.</th>
-                                                <th style="width: 7%">ID Transaksi</th>
-                                                <th style="width: 7%">ID User</th>
-                                                <th style="width: 7%">ID Order</th>
-                                                <th style="width: 15%">Nama Pemesan</th>
-                                                <th style="width: 15%">Menu</th>
-                                                <th style="width: 15%">Harga</th>
-                                                <th >Jumlah Pesan</th>
-                                                <th style="width: 15%">Total Bayar</th>
+                                                <th style="width: 4%">No.</th>
+                                                <th style="width: 12%">Invoice</th>
+                                                <th style="width: 12%">Waktu Order</th>
+                                                <th style="width: 8%">Pembayaran</th>
+                                                <th style="width: 10%">Subtotal</th>
+                                                <th style="width: 10%">Status Order</th>
+                                                <th style="width: 10%">#</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-                                            {{-- @foreach ($levels as $level)
-                                                <tr>
+                                            @foreach ($order as $o)
+                                                <tr class="text-center">
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $level->id }}</td>
-                                                    <td>{{ $level->name_level }}</td>
+                                                    <td>{{ $o->invoice }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($o->created_at)->format('d F Y H:i') }}</td>
+                                                    <td>{{ $o->metode_pembayaran }}</td>
+                                                    <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
+                                                    <td>{{$o->name}}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#modal-edit-{{ $level->id }}">
+                                                        <a href="{{ route('user.transaksi.detail',['id'=>$o->id]) }}" class="btn btn-sm btn-primary">
                                                             <i class="fa fa-edit"></i>
-                                                            Edit
+                                                            Detail
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th >No.</th>
-                                                <th >ID Transaksi</th>
-                                                <th >ID User</th>
-                                                <th >ID Order</th>
-                                                <th >Nama Pemesan</th>
-                                                <th >Menu</th>
-                                                <th >Harga</th>
-                                                <th >Jumlah Pesan</th>
-                                                <th >Total Bayar</th>
+                                                <th>No.</th>
+                                                <th>Invoice</th>
+                                                <th>Waktu Order</th>
+                                                <th>Pembayaran</th>
+                                                <th>Subtotal</th>
+                                                <th>Status Order</th>
+                                                <th>#</th>
                                             </tr>
                                         </tfoot>
                                     </table>

@@ -107,7 +107,7 @@ class HomeAdmin extends Controller
             'jenis_menu' => 'required',
             'harga_menu' => 'required',
             'foto_menu' => 'required',
-            'status_menu' => 'required',
+            'stok_menu' => 'required',
         ]);
 
         $fotoMenu = $request->foto_menu;
@@ -119,7 +119,7 @@ class HomeAdmin extends Controller
         $menus->jenis_menu = $request->jenis_menu;
         $menus->harga_menu = $request->harga_menu;
         $menus->foto_menu = $namaFoto;
-        $menus->status_menu = $request->status_menu;
+        $menus->stok_menu = $request->stok_menu;
 
         $fotoMenu->move(public_path().'/assets/img/menu', $namaFoto);
         $menus->save();
@@ -138,7 +138,7 @@ class HomeAdmin extends Controller
             'nama_menu' => 'required',
             'jenis_menu' => 'required',
             'harga_menu' => 'required',
-            'status_menu' => 'required',
+            'stok_menu' => 'required',
         ]);
 
         $menus = Menu::findOrFail($id);
@@ -153,7 +153,7 @@ class HomeAdmin extends Controller
             'jenis_menu' => $request['jenis_menu'],
             'harga_menu' => $request['harga_menu'],
             'foto_menu' => $awal,
-            'status_menu' => $request['status_menu'],
+            'stok_menu' => $request['stok_menu'],
         ];
 
         $menus->update($dataUpdate);
@@ -185,6 +185,12 @@ class HomeAdmin extends Controller
             return redirect()
                 ->back();
         }
+    }
+
+    public function order()
+    {
+        $menus = Menu::all();
+        return view('admin.order', compact('menus'));
     }
 
     public function transaksi()

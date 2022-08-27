@@ -14,6 +14,6 @@ class Menu extends Model
         'jenis_menu',
         'harga_menu',
         'foto_menu',
-        'status_menu',
+        'stok_menu',
     ];
 }

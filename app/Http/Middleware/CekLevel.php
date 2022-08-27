@@ -25,7 +25,7 @@ class CekLevel
         } elseif (Auth::user()->level_id == '2') {
             return redirect('/kasir-dashboard');
         } elseif (Auth::user()->level_id == '3') {
-            return redirect('/waiter-dashboard');
+            return redirect('/home');
         }
         return redirect('/');
     }

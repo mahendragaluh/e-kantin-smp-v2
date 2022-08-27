@@ -72,13 +72,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-4 col-form-label" for="statusMenu">Status Menu</label>
+                                        <label class="col-sm-4 col-form-label" for="statusMenu">Stok Menu</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control" id="statusMenu" name="status_menu" reset>
-                                                <option>Status Menu</option>
-                                                <option value="Tersedia">Tersedia</option>
-                                                <option value="Habis">Habis</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="stokMenu" name="stok_menu"
+                                                value="" placeholder="Isi Stok Menu">
                                         </div>
                                     </div>
                                 </div>
@@ -121,8 +118,10 @@
                                             <div class="col-sm-8">
                                                 <select class="form-control" id="jenisMenu" name="jenis_menu">
                                                     <option>Jenis Menu</option>
-                                                    <option value="Makanan" {{ $menu->jenis_menu == "Makanan" ? 'selected' : '' }}>Makanan</option>
-                                                    <option value="Minuman" {{ $menu->jenis_menu == "Minuman" ? 'selected' : '' }}>Minuman</option>
+                                                    <option value="Makanan"
+                                                        {{ $menu->jenis_menu == 'Makanan' ? 'selected' : '' }}>Makanan</option>
+                                                    <option value="Minuman"
+                                                        {{ $menu->jenis_menu == 'Minuman' ? 'selected' : '' }}>Minuman</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -151,13 +150,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label" for="statusMenu">Status Menu</label>
+                                            <label class="col-sm-4 col-form-label" for="stokMenu">Stok Menu</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" id="statusMenu" name="status_menu" reset>
-                                                    <option>Status Menu</option>
-                                                    <option value="Tersedia" {{ $menu->status_menu == "Tersedia" ? 'selected' : '' }}>Tersedia</option>
-                                                    <option value="Habis" {{ $menu->status_menu == "Habis" ? 'selected' : '' }}>Habis</option>
-                                                </select>
+                                                <input type="text" class="form-control" id="stokMenu" name="stok_menu"
+                                                    value="{{ $menu->stok_menu }}" placeholder="Isi Stok Menu">
                                             </div>
                                         </div>
                                     </div>
@@ -186,41 +182,65 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <div class="container w-full px-2 py-2 mx-auto col">
-                                        <div class="grid lg:grid-cols-3 gap-y-5 row">
-                                            @foreach ($menus as $menu)
-                                                <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-                                                    <div class="card bg-light d-flex flex-fill">
-                                                        <img class="card-img-top" style="height: 200px"
-                                                            src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}"
-                                                            alt="Dist Photo 3">
-                                                        <div class="card-body pt-2">
-                                                            <div class="row-md-2">
-                                                                <div class="text-center">
-                                                                    <h4 class=""><b>{{ $menu->nama_menu }}</b></h4>
-                                                                    <h5 class="">{{ $menu->jenis_menu }}</h5>
-                                                                    <h5 class="">Rp{{ $menu->harga_menu }}</h5>
-                                                                    <h5 class="">{{ $menu->status_menu }}</h5>
-                                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                                        action="{{ route('destroy.menu', $menu->id) }}"
-                                                                        method="POST">
-                                                                        <a href=""
-                                                                            class="btn btn-sm btn-primary mb-1 mt-1"
-                                                                            data-toggle="modal"
-                                                                            data-target="#modal-edit-menu-{{ $menu->id }}">EDIT</a>
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                            class="btn btn-sm btn-danger mb-1 mt-1">HAPUS</button>
-                                                                    </form>
-                                                                </div>
+                                    <div class="table-responsive">
+                                        <table id="datatabel-users" class="table table-bordered table-striped projects">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 5%">No.</th>
+                                                    <th style="width: 15%">Foto Menu</th>
+                                                    <th style="width: 15%">Nama Menu</th>
+                                                    <th style="width: 15%">Jenis Menu</th>
+                                                    <th style="width: 10%">Harga</th>
+                                                    <th style="width: 10%">Stok</th>
+                                                    <th style="width: 10%">Aksi</th>
+                                                </tr>
+                                            </thead>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                            <tbody>
+                                                @foreach ($menus as $menu)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td><img src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}"
+                                                                style="width: 150px" alt="Foto Menu"></td>
+                                                        <td>{{ $menu->nama_menu }}</td>
+                                                        <td>{{ $menu->jenis_menu }}</td>
+                                                        <td>Rp {{ number_format($menu->harga_menu) }}</td>
+                                                        {{-- <td><span class="badge badge-{{ $menu->status_menu ? 'success':'danger'   }}">{{ $menu->status_menu ? 'Tersedia' : 'Tidak Tersedia' }}</span></td> --}}
+                                                        <td>
+                                                            @if ($menu->stok_menu == 0)
+                                                                <span class="badge bg-danger">Habis</span>
+                                                            @else
+                                                                {{ $menu->stok_menu }}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                                action="{{ route('destroy.menu', $menu->id) }}"
+                                                                method="POST">
+                                                                <a href="" class="btn btn-sm btn-primary mb-1 mt-1"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modal-edit-menu-{{ $menu->id }}">EDIT</a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-danger mb-1 mt-1">HAPUS</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Foto Menu</th>
+                                                    <th>Nama Menu</th>
+                                                    <th>Jenis Menu</th>
+                                                    <th>Harga</th>
+                                                    <th>Status</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

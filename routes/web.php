@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Admin\KeranjangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,17 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
     Route::post('/menu{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'update_menu'])->name('update.menu');
     Route::delete('/menu{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'destroy_menu'])->name('destroy.menu');
 
-    Route::get('admin/transaksi', [App\Http\Controllers\Admin\HomeAdmin::class, 'transaksi'])->name('transaksi.admin');
+    Route::get('admin/order', [App\Http\Controllers\Admin\HomeAdmin::class, 'order'])->name('order.admin');
+    Route::post('admin/order',[App\Http\Controllers\Admin\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
 
-    Route::get('admin/pemesanan', [App\Http\Controllers\Admin\HomeAdmin::class, 'pemesanan'])->name('pemesanan.admin');
+    Route::get('admin/transaksi', [App\Http\Controllers\User\OrderController::class, 'index'])->name('transaksi.user');
+    Route::get('admin/transaksi/detail/{id}',[App\Http\Controllers\User\OrderController::class, 'detail'])->name('user.transaksi.detail');
+
+    Route::get('admin/pemesanan', [App\Http\Controllers\Admin\KeranjangController::class, 'index'])->name('pemesanan.admin');
+    Route::post('admin/pemesanan', [App\Http\Controllers\User\OrderController::class, 'simpan'])->name('user.order.simpan');
+    Route::resource('keranjang', KeranjangController::class);
+
+    Route::get('/checkout',[App\Http\Controllers\User\CheckoutController::class, 'index'])->name('user.checkout');
 });
 
 Route::middleware(['auth','CekLevel:2'])->group(function () {
@@ -46,6 +55,7 @@ Route::middleware(['auth','CekLevel:2'])->group(function () {
 });
 
 Route::middleware(['auth','CekLevel:3'])->group(function () {
+    Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.dashboard');
     Route::get('waiter-dashboard', [App\Http\Controllers\Waiter\WaiterController::class, 'index'])->name('dashboard.waiter');
     Route::get('waiter/pemesanan', [App\Http\Controllers\Waiter\WaiterController::class, 'pemesanan'])->name('pemesanan.waiter');
 });

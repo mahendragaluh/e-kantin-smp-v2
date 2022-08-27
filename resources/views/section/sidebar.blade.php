@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/dashboard-admin" class="brand-link">
-        <img src="{{ asset ('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image img-circle elevation-3"
+        <img src="{{ asset('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image img-circle elevation-3"
             style="width: 40px; height: 40px; object-fit: cover; opacity: .8">
         <span class="brand-text font-weight-light"><b>E-Kantin</b> SMP</span>
     </a>
@@ -86,6 +86,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item {{ request()->is('admin/order*') ? 'active menu-open' : '' }}">
+                        <a href="/admin/order" class="nav-link {{ request()->is('admin/order*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-cart-plus"></i>
+                            <p>
+                                Order
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item {{ request()->is('admin/transaksi*') ? 'active menu-open' : '' }}">
                         <a href="/admin/transaksi"
                             class="nav-link {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
@@ -96,11 +104,19 @@
                         </a>
                     </li>
                     <li class="nav-item {{ request()->is('admin/pemesanan*') ? 'active menu-open' : '' }}">
+                        <?php
+                        $user_id = Auth::user()->id;
+                        $total_keranjang = DB::table('keranjangs')
+                            ->select(DB::raw('count(id) as jumlah'))
+                            ->where('user_id', $user_id)
+                            ->first();
+                        ?>
                         <a href="/admin/pemesanan"
                             class="nav-link {{ request()->is('admin/pemesanan*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
                                 Pemesanan
+                                <span class="right badge badge-danger">{{ $total_keranjang->jumlah }}</span>
                             </p>
                         </a>
                     </li>
