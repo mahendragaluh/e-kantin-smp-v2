@@ -1,15 +1,14 @@
-@extends('section.panel')
+@extends('layouts.user.master')
 
 @section('content')
-    @auth
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Checkout</h1>
+
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -23,9 +22,11 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <h2>Detail Pesanan</h2>
                             <div class="card">
                                 {{-- <div class="card-header">
                                     <h3 class="card-title">View Data Transaksi</h3>
@@ -34,9 +35,9 @@
                                 <div class="card-body">
                                     <form action="{{ route('user.order.simpan') }}" method="post">
                                         @csrf
-                                        <table class="table site-block-order-table mb-5">
+                                        <table class="table mb-5">
                                             <thead>
-                                                <th>Product</th>
+                                                <th>Menu</th>
                                                 <th>Total</th>
                                             </thead>
                                             <tbody>
@@ -66,8 +67,8 @@
                                         <div class="form-group">
                                             <label for="">Pilih Metode Pembayaran</label>
                                             <select name="metode_pembayaran" id="" class="form-control">
-                                                <option value="saldo">Saldo</option>
-                                                <option value="cod">Cod</option>
+                                                <option value="1">Saldo</option>
+                                                <option value="2">Tunai</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -89,6 +90,5 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-    @endauth
     <!-- Page specific script -->
 @endsection

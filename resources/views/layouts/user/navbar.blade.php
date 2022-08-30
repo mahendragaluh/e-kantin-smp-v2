@@ -24,10 +24,42 @@
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <!-- Notifications Dropdown Menu -->
+            <?php
+            $user_id = Auth::user()->id;
+            $total_keranjang = DB::table('keranjangs')
+                ->select(DB::raw('count(id) as jumlah'))
+                ->where('user_id', $user_id)
+                ->first();
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('keranjang.index')}}" role="button">
+                    <i class="fas fa-cart-plus"></i>
+                    <span class="badge badge-primary navbar-badge ms-2">{{ $total_keranjang->jumlah }}</span>
+                </a>
+            </li>
+            <?php
+            $user_id = Auth::user()->id;
+            $total_order = DB::table('orders')
+                ->select(DB::raw('count(id) as jumlah'))
+                ->where('user_id', $user_id)
+                ->where('status_order_id', '!=', 2)
+                ->first();
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.order')}}" role="button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge badge-primary navbar-badge ms-2">{{ $total_order->jumlah }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" role="button">
+                    <i class="fas fa-receipt"></i>
+                </a>
+            </li>
             <li class="nav-item dropdown">
                 <a id="dropdownKanan" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     class="nav-link dropdown-toggle">
-                    <i class="far fa-user"></i>
+                    <i class="fas fa-user"></i>
                 </a>
                 <ul aria-labelledby="dropdownKanan" class="dropdown-menu border-0 shadow">
                     <li class="dropdown-divider"></li>

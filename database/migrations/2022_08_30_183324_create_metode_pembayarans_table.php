@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('metode_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice');
-            $table->unsignedBigInteger('user_id');
-            $table->integer('subtotal');
-            $table->unsignedBigInteger('status_order_id');
-            $table->string('metode_pembayaran_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('metode_pembayarans');
     }
 };

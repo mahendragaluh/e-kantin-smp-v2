@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class LevelSeeder extends Seeder
+class MetodePembayaranSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -16,18 +16,12 @@ class LevelSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('levels')->insert([
+        DB::table('metode_pembayarans')->insert([
             [
-                'name_level' => 'Administrator'
+                'name' => 'Saldo'
             ],
             [
-                'name_level' => 'Kasir'
-            ],
-            [
-                'name_level' => 'Pengelola'
-            ],
-            [
-                'name_level' => 'Pelanggan'
+                'name' => 'Tunai'
             ]
         ]);
     }

@@ -18,6 +18,7 @@ class OrderController extends Controller
 
         $order = DB::table('orders')
                     ->join('status_orders','status_orders.id','=','orders.status_order_id')
+                    ->join('metode_pembayarans','metode_pembayarans.id','=','orders.status_order_id')
                     ->select('orders.*','status_orders.name')
                     ->orderBy('created_at', 'desc')
                     ->where('orders.status_order_id',1)
@@ -26,7 +27,7 @@ class OrderController extends Controller
             'order' => $order,
         );
 
-        return view('admin.transaksi', compact('order'));
+        return view('user.order', compact('order'));
     }
 
     public function detail($id)
@@ -76,6 +77,6 @@ class OrderController extends Controller
         }
         //lalu hapus data produk pada keranjang pembeli
         DB::table('keranjangs')->where('user_id',$userid)->delete();
-        return redirect()->route('order.admin');
+        return redirect()->route('user.dashboard');
     }
 }

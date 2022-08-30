@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Admin\KeranjangController;
+use App\Http\Controllers\User\KeranjangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,25 +37,30 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
     Route::delete('/menu{id}', [App\Http\Controllers\Admin\HomeAdmin::class, 'destroy_menu'])->name('destroy.menu');
 
     Route::get('admin/order', [App\Http\Controllers\Admin\HomeAdmin::class, 'order'])->name('order.admin');
-    Route::post('admin/order',[App\Http\Controllers\Admin\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
 
-    Route::get('admin/transaksi', [App\Http\Controllers\User\OrderController::class, 'index'])->name('transaksi.user');
-    Route::get('admin/transaksi/detail/{id}',[App\Http\Controllers\User\OrderController::class, 'detail'])->name('user.transaksi.detail');
 
-    Route::get('admin/pemesanan', [App\Http\Controllers\Admin\KeranjangController::class, 'index'])->name('pemesanan.admin');
-    Route::post('admin/pemesanan', [App\Http\Controllers\User\OrderController::class, 'simpan'])->name('user.order.simpan');
-    Route::resource('keranjang', KeranjangController::class);
 
-    Route::get('/checkout',[App\Http\Controllers\User\CheckoutController::class, 'index'])->name('user.checkout');
+
+
 });
 
 Route::middleware(['auth','CekLevel:2'])->group(function () {
-    Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\KasirController::class, 'index'])->name('dashboard.kasir');
-    Route::get('kasir/transaksi', [App\Http\Controllers\Kasir\KasirController::class, 'transaksi'])->name('transaksi.kasir');
+    Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\HomeController::class, 'index'])->name('dashboard.kasir');
+    Route::get('kasir/transaksi/pesanan-baru', [App\Http\Controllers\Kasir\TransaksiController::class, 'index'])->name('kasir.transaksi');
+    Route::get('kasir/transaksi/pesanan-baru/detail/{id}', [App\Http\Controllers\Kasir\TransaksiController::class, 'detail'])->name('kasir.transaksi.detail');
+    Route::get('kasir/transaksi/konfirmasi/{id}', [App\Http\Controllers\Kasir\TransaksiController::class, 'konfirmasi'])->name('kasir.transaksi.konfirmasi');
+    Route::get('kasir/transaksi/selesai', [App\Http\Controllers\Kasir\TransaksiController::class, 'transaksi_selesai'])->name('kasir.transaksi.selesai');
 });
 
-Route::middleware(['auth','CekLevel:3'])->group(function () {
+Route::middleware(['auth','CekLevel:4'])->group(function () {
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.dashboard');
-    Route::get('waiter-dashboard', [App\Http\Controllers\Waiter\WaiterController::class, 'index'])->name('dashboard.waiter');
-    Route::get('waiter/pemesanan', [App\Http\Controllers\Waiter\WaiterController::class, 'pemesanan'])->name('pemesanan.waiter');
+    Route::post('home',[App\Http\Controllers\User\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
+    // Route::get('keranjang', [App\Http\Controllers\User\KeranjangController::class, 'index'])->name('user.keranjang');
+    Route::resource('keranjang', KeranjangController::class);
+    Route::get('/checkout',[App\Http\Controllers\User\CheckoutController::class, 'index'])->name('user.checkout');
+    Route::post('keranjang', [App\Http\Controllers\User\OrderController::class, 'simpan'])->name('user.order.simpan');
+    Route::get('order', [App\Http\Controllers\User\OrderController::class, 'index'])->name('user.order');
+    Route::get('order/detail/{id}',[App\Http\Controllers\User\OrderController::class, 'detail'])->name('user.order.detail');
+
+
 });

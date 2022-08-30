@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('level_id');
+            $table->foreignId('level_id')->after('id');
         });
     }
 

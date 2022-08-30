@@ -23,7 +23,7 @@ class CheckoutController extends Controller
 
         //buat kode invoice sesua tanggalbulantahun dan jam
         $data = [
-            'invoice' => 'ALV'.Date('Ymdhi'),
+            'invoice' => 'INV'.Date('Ymdhi'),
             'keranjangs' => $keranjangs,
         ];
         return view('user.checkout',$data);

@@ -2,8 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/dashboard-admin" class="brand-link">
-        <img src="{{ asset('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image img-circle elevation-3"
-            style="width: 40px; height: 40px; object-fit: cover; opacity: .8">
+        <img src="{{ asset('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image">
         <span class="brand-text font-weight-light"><b>E-Kantin</b> SMP</span>
     </a>
 
@@ -86,23 +85,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ request()->is('admin/order*') ? 'active menu-open' : '' }}">
-                        <a href="/admin/order" class="nav-link {{ request()->is('admin/order*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-cart-plus"></i>
-                            <p>
-                                Order
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ request()->is('admin/transaksi*') ? 'active menu-open' : '' }}">
-                        <a href="/admin/transaksi"
-                            class="nav-link {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-receipt"></i>
-                            <p>
-                                Transaksi
-                            </p>
-                        </a>
-                    </li>
                     <li class="nav-item {{ request()->is('admin/pemesanan*') ? 'active menu-open' : '' }}">
                         <?php
                         $user_id = Auth::user()->id;
@@ -119,6 +101,45 @@
                                 <span class="right badge badge-danger">{{ $total_keranjang->jumlah }}</span>
                             </p>
                         </a>
+                    </li>
+                @endif
+
+                @if (Auth::user()->level_id == '2')
+                    <li class="nav-item {{ request()->is('kasir-dashboard*') ? 'active menu-open' : '' }}">
+                        <a href="/kasir-dashboard" class="nav-link {{ request()->is('kasir-dashboard*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>
+                                Pesanan Baru
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->is('kasir/transaksi/pesanan-baru') || request()->is('kasir/transaksi/selesai') ? 'active menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ request()->is('kasir/transaksi*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>
+                                Transaksi
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('kasir.transaksi') }}"
+                                    class="nav-link {{ request()->is('kasir/transaksi/pesanan-baru*') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pesanan Baru</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('kasir.transaksi.selesai') }}"
+                                    class="nav-link {{ request()->is('kasir/transaksi/selesai') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Selesai</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
 

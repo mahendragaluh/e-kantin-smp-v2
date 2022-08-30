@@ -24,7 +24,7 @@ class CekLevel
             return redirect('/dashboard-admin');
         } elseif (Auth::user()->level_id == '2') {
             return redirect('/kasir-dashboard');
-        } elseif (Auth::user()->level_id == '3') {
+        } elseif (Auth::user()->level_id == '4') {
             return redirect('/home');
         }
         return redirect('/');
