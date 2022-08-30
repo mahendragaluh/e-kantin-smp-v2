@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" role="button">
+                <a class="nav-link" href="{{route('user.transaksi')}}" role="button">
                     <i class="fas fa-receipt"></i>
                 </a>
             </li>

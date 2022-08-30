@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="/dashboard-admin" class="brand-link">
         <img src="{{ asset('/assets/img/logo-smp.png') }}" alt="Logo SMP" class="brand-image">
-        <span class="brand-text font-weight-light"><b>E-Kantin</b> SMP</span>
+        <span class="brand-text font-weight-light"><b>E-Kantin</b> SPENSASILA</span>
     </a>
 
     <!-- Sidebar -->
@@ -19,13 +19,13 @@
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 <span class="right badge badge-success">
                     @if (Auth::user()->level_id == '1')
-                        ADMIN
+                        ADMINISTRATOR
                     @endif
                     @if (Auth::user()->level_id == '2')
                         KASIR
                     @endif
                     @if (Auth::user()->level_id == '3')
-                        WAITER
+                        PENGELOLA
                     @endif
                 </span>
             </div>
@@ -85,37 +85,20 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ request()->is('admin/pemesanan*') ? 'active menu-open' : '' }}">
-                        <?php
-                        $user_id = Auth::user()->id;
-                        $total_keranjang = DB::table('keranjangs')
-                            ->select(DB::raw('count(id) as jumlah'))
-                            ->where('user_id', $user_id)
-                            ->first();
-                        ?>
-                        <a href="/admin/pemesanan"
-                            class="nav-link {{ request()->is('admin/pemesanan*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-shopping-cart"></i>
-                            <p>
-                                Pemesanan
-                                <span class="right badge badge-danger">{{ $total_keranjang->jumlah }}</span>
-                            </p>
-                        </a>
-                    </li>
                 @endif
-
                 @if (Auth::user()->level_id == '2')
                     <li class="nav-item {{ request()->is('kasir-dashboard*') ? 'active menu-open' : '' }}">
-                        <a href="/kasir-dashboard" class="nav-link {{ request()->is('kasir-dashboard*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-shopping-cart"></i>
+                        <a href="/kasir-dashboard"
+                            class="nav-link {{ request()->is('kasir-dashboard*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Pesanan Baru
+                                Dashboard
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->is('kasir/transaksi/pesanan-baru') || request()->is('kasir/transaksi/selesai') ? 'active menu-open' : '' }}">
-                        <a href="#"
-                            class="nav-link {{ request()->is('kasir/transaksi*') ? 'active' : '' }}">
+                    <li
+                        class="nav-item {{ request()->is('kasir/transaksi/pesanan-baru') || request()->is('kasir/transaksi/selesai') ? 'active menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('kasir/transaksi*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-receipt"></i>
                             <p>
                                 Transaksi
@@ -142,7 +125,17 @@
                         </ul>
                     </li>
                 @endif
-
+                @if (Auth::user()->level_id == '3')
+                    <li class="nav-item {{ request()->is('dashboard-pengelola*') ? 'active menu-open' : '' }}">
+                        <a href="/dashboard-pengelola"
+                            class="nav-link {{ request()->is('dashboard-pengelola*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item ">
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-cog"></i>

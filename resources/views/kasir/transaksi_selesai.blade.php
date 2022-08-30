@@ -9,7 +9,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Transaksi</h1>
+                            <h1 class="m-0">Selesai</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -27,9 +27,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
+                                {{-- <div class="card-header">
                                     <h3 class="card-title">View Data Transaksi</h3>
-                                </div>
+                                </div> --}}
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table id="datatabel-users" class="table table-bordered table-striped">
@@ -50,9 +50,9 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $o->invoice }}</td>
                                                     <td>{{ $o->nama_pemesan }}</td>
-                                                    <td>{{ $o->metode_pembayaran }}</td>
+                                                    <td>{{ $o->pembayaran }}</td>
                                                     <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
-                                                    <td>{{ $o->name }}</td>
+                                                    <td><span class="badge bg-success">{{ $o->name }}</span></td>
                                                     <td>{{ Carbon\Carbon::parse($o->updated_at)->format('d F Y H:i') }}</td>
                                                 </tr>
                                             @endforeach

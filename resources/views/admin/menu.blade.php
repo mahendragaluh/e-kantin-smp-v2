@@ -48,10 +48,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label" for="jenisMenu">Jenis Menu</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control" id="jenisMenu" name="jenis_menu">
+                                            <select class="form-control" id="jenisMenu" name="jenis_menu_id">
                                                 <option>Jenis Menu</option>
-                                                <option value="Makanan">Makanan</option>
-                                                <option value="Minuman">Minuman</option>
+                                                <option value="1">Makanan</option>
+                                                <option value="2">Minuman</option>
+                                                <option value="3">Snack</option>
                                             </select>
                                         </div>
                                     </div>
@@ -118,10 +119,12 @@
                                             <div class="col-sm-8">
                                                 <select class="form-control" id="jenisMenu" name="jenis_menu">
                                                     <option>Jenis Menu</option>
-                                                    <option value="Makanan"
-                                                        {{ $menu->jenis_menu == 'Makanan' ? 'selected' : '' }}>Makanan</option>
-                                                    <option value="Minuman"
-                                                        {{ $menu->jenis_menu == 'Minuman' ? 'selected' : '' }}>Minuman</option>
+                                                    <option value="1"
+                                                        {{ $menu->jenis_menu_id == '1' ? 'selected' : '' }}>Makanan</option>
+                                                    <option value="2"
+                                                        {{ $menu->jenis_menu_id == '2' ? 'selected' : '' }}>Minuman</option>
+                                                    <option value="3"
+                                                        {{ $menu->jenis_menu_id == '3' ? 'selected' : '' }}>Snack</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -203,7 +206,7 @@
                                                         <td><img src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}"
                                                                 style="width: 150px" alt="Foto Menu"></td>
                                                         <td>{{ $menu->nama_menu }}</td>
-                                                        <td>{{ $menu->jenis_menu }}</td>
+                                                        <td>{{ $menu->jenis_menu_id }}</td>
                                                         <td>Rp {{ number_format($menu->harga_menu) }}</td>
                                                         {{-- <td><span class="badge badge-{{ $menu->status_menu ? 'success':'danger'   }}">{{ $menu->status_menu ? 'Tersedia' : 'Tidak Tersedia' }}</span></td> --}}
                                                         <td>

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('nama_menu', 20);
-            $table->string('jenis_menu', 20);
+            $table->unsignedBigInteger('jenis_menu_id');
             $table->integer('harga_menu')->default(12);
             $table->string('foto_menu', 100);
             $table->integer('stok_menu')->default(12);

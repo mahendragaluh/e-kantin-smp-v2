@@ -104,7 +104,7 @@ class HomeAdmin extends Controller
     {
         $this->validate($request, [
             'nama_menu' => 'required',
-            'jenis_menu' => 'required',
+            'jenis_menu_id' => 'required',
             'harga_menu' => 'required',
             'foto_menu' => 'required',
             'stok_menu' => 'required',
@@ -116,7 +116,7 @@ class HomeAdmin extends Controller
 
         $menus = new Menu;
         $menus->nama_menu = $request->nama_menu;
-        $menus->jenis_menu = $request->jenis_menu;
+        $menus->jenis_menu_id = $request->jenis_menu_id;
         $menus->harga_menu = $request->harga_menu;
         $menus->foto_menu = $namaFoto;
         $menus->stok_menu = $request->stok_menu;
@@ -136,7 +136,7 @@ class HomeAdmin extends Controller
     {
         $this->validate($request, [
             'nama_menu' => 'required',
-            'jenis_menu' => 'required',
+            'jenis_menu_id' => 'required',
             'harga_menu' => 'required',
             'stok_menu' => 'required',
         ]);
@@ -150,7 +150,7 @@ class HomeAdmin extends Controller
 
         $dataUpdate = [
             'nama_menu' => $request['nama_menu'],
-            'jenis_menu' => $request['jenis_menu'],
+            'jenis_menu_id' => $request['jenis_menu_id'],
             'harga_menu' => $request['harga_menu'],
             'foto_menu' => $awal,
             'stok_menu' => $request['stok_menu'],

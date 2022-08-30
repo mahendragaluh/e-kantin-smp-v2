@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Waiter;
+namespace App\Http\Controllers\Pengelola;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 
-class WaiterController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
-        $menus = Menu::all();
-        return view('waiter.home', compact('menus'));
+        return view('pengelola.home');
     }
 
     public function pemesanan()

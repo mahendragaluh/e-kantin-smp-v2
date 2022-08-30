@@ -24,16 +24,21 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
                     <div class="row">
+                        <div class="col-12">
+                            <div class="card">
 
+                            </div>
+                            <!-- /.card -->
+                        </div>
                     </div>
                     <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
+
+                </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
     @endauth
-    <!-- Page specific script -->
 @endsection

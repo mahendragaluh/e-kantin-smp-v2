@@ -14,8 +14,9 @@ class TransaksiController extends Controller
         $order = DB::table('orders')
                     ->join('status_orders','status_orders.id','=','orders.status_order_id')
                     ->join('users','users.id','=','orders.user_id')
+                    ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->orderBy('id', 'desc')
-                    ->select('orders.*','status_orders.name','users.name as nama_pemesan')
+                    ->select('orders.*', 'status_orders.name', 'users.name as nama_pemesan', 'metode_pembayarans.name as pembayaran')
                     ->where('orders.status_order_id',1)
                     ->get();
         $data = array(
@@ -36,7 +37,8 @@ class TransaksiController extends Controller
         $order = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
                     ->join('status_orders','status_orders.id','=','orders.status_order_id')
-                    ->select('orders.*','users.name as nama_pelanggan','status_orders.name as status')
+                    ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
+                    ->select('orders.*','users.name as nama_pelanggan','status_orders.name as status', 'metode_pembayarans.name as pembayaran')
                     ->where('orders.id',$id)
                     ->first();
         $data = array(
@@ -72,8 +74,9 @@ class TransaksiController extends Controller
         $order = DB::table('orders')
                     ->join('status_orders','status_orders.id','=','orders.status_order_id')
                     ->join('users','users.id','=','orders.user_id')
+                    ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->orderBy('updated_at', 'desc')
-                    ->select('orders.*','status_orders.name','users.name as nama_pemesan')
+                    ->select('orders.*', 'status_orders.name', 'users.name as nama_pemesan', 'metode_pembayarans.name as pembayaran')
                     ->where('orders.status_order_id',2)
                     ->get();
         $data = array(

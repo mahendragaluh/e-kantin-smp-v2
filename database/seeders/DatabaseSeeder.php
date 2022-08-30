@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelSeeder::class);
         $this->call(StatusOrderSeeder::class);
         $this->call(MetodePembayaranSeeder::class);
+        $this->call(JenisMenuSeeder::class);
     }
 }

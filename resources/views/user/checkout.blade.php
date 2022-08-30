@@ -66,7 +66,7 @@
                                         <input type="hidden" name="subtotal" value="{{ $subtotal }}">
                                         <div class="form-group">
                                             <label for="">Pilih Metode Pembayaran</label>
-                                            <select name="metode_pembayaran" id="" class="form-control">
+                                            <select name="metode_pembayaran_id" id="" class="form-control">
                                                 <option value="1">Saldo</option>
                                                 <option value="2">Tunai</option>
                                             </select>

@@ -44,12 +44,12 @@
                                                 <tr>
                                                     <th>Status Pesanan</th>
                                                     <td>:</td>
-                                                    <td>{{ $order->status }}</td>
+                                                    <td><span class="badge bg-danger">{{ $order->status }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Metode Pembayaran</th>
                                                     <td>:</td>
-                                                    <td>{{$order->metode_pembayaran}}</td>
+                                                    <td>{{$order->pembayaran}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Total Pembayaran</th>
@@ -61,7 +61,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row mb-5">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <table id="datatabel-users-keranjang" class="table table-bordered projects">
                                                 <thead>

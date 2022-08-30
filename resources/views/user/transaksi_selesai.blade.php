@@ -27,38 +27,30 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">View Data Order</h3>
+                                <h3 class="card-title">View Data Transaksi</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="datatabel-users-keranjang" class="table table-bordered table-striped projects">
+                                <table id="datatabel-users" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 4%">No.</th>
-                                            <th style="width: 12%">Invoice</th>
-                                            <th style="width: 12%">Waktu Order</th>
-                                            <th style="width: 8%">Pembayaran</th>
-                                            <th style="width: 10%">Subtotal</th>
-                                            <th style="width: 10%">Status Order</th>
-                                            <th style="width: 10%">#</th>
+                                            <th style="width: 9%">No.</th>
+                                            <th style="width: 15%">Invoice</th>
+                                            <th style="width: 13%">Pembayaran</th>
+                                            <th style="width: 15%">Subtotal</th>
+                                            <th style="width: 15%">Status Order</th>
+                                            <th style="width: 18%">Waktu Bayar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order as $o)
+                                        @foreach ($orderbaru as $o)
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $o->invoice }}</td>
-                                                <td>{{ Carbon\Carbon::parse($o->created_at)->format('d F Y H:i') }}</td>
                                                 <td>{{ $o->pembayaran }}</td>
                                                 <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
-                                                <td><span class="badge bg-danger">{{ $o->name }}</span></td>
-                                                <td>
-                                                    <a href="{{ route('user.order.detail', ['id' => $o->id]) }}"
-                                                        class="btn btn-sm btn-primary">
-                                                        <i class="fa fa-edit"></i>
-                                                        Detail
-                                                    </a>
-                                                </td>
+                                                <td><span class="badge bg-success">{{ $o->name }}</span></td>
+                                                <td>{{ Carbon\Carbon::parse($o->updated_at)->format('d F Y H:i') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -66,11 +58,10 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Invoice</th>
-                                            <th>Waktu Order</th>
                                             <th>Pembayaran</th>
                                             <th>Subtotal</th>
                                             <th>Status Order</th>
-                                            <th>#</th>
+                                            <th>Waktu Bayar</th>
                                         </tr>
                                     </tfoot>
                                 </table>
