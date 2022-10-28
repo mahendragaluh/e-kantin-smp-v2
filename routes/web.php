@@ -49,10 +49,15 @@ Route::middleware(['auth','CekLevel:2'])->group(function () {
 
 Route::middleware(['auth', 'CekLevel:3'])->group(function () {
     Route::get('dashboard-pengelola', [App\Http\Controllers\Pengelola\HomeController::class, 'index'])->name('pengelola.dashboard');
+    Route::get('menu', [App\Http\Controllers\Pengelola\HomeController::class, 'menu'])->name('pengelola.menu');
+    Route::post('/menu', [App\Http\Controllers\Pengelola\HomeController::class, 'store_menu'])->name('pengelola.store.menu');
+    Route::post('/menu{id}', [App\Http\Controllers\Pengelola\HomeController::class, 'update_menu'])->name('pengelola.update.menu');
+    Route::delete('/menu{id}', [App\Http\Controllers\Pengelola\HomeController::class, 'destroy_menu'])->name('pengelola.destroy.menu');
 });
 
 Route::middleware(['auth','CekLevel:4'])->group(function () {
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.dashboard');
+    Route::get('/kategori_menu/{id}',[App\Http\Controllers\JenisMenuController::class, 'menuByJenisMenu'])->name('user.kategori.menu');
     Route::post('home',[App\Http\Controllers\User\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
     // Route::get('keranjang', [App\Http\Controllers\User\KeranjangController::class, 'index'])->name('user.keranjang');
     Route::resource('keranjang', KeranjangController::class);

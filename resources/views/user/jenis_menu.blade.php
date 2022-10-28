@@ -27,7 +27,7 @@
                     <div class="col-md-9 order-2">
                         <div class="row mb-5">
                             @foreach ($menus as $menu)
-                                <div class="col-6 col-sm-6 col-lg-4 mb-1">
+                                <div class="col-6 col-sm-6 col-lg-4 mb-1" data-aos="fade-up">
                                     <div class="card text-center border">
                                         <img class="card-img-top" style="height: 150px"
                                             src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}" alt="Foto Menu">
@@ -74,10 +74,10 @@
                         <div class="card border p-4 rounded mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Kategori Menu</h3>
                             <ul class="list-unstyled mb-0">
-                                @foreach ($jenis_menus as $jenis)
-                                    <li class="mb-1"><a href="{{ route('user.kategori.menu', ['id' => $jenis->id]) }}"
-                                            class="d-flex"><span>{{ $jenis->name }}</span> <span
-                                                class="text-black ml-auto">( {{ $jenis->jumlah }} )</span></a>
+                                @foreach ($kategori_menu as $kategori)
+                                    <li class="mb-1"><a href="{{ route('user.kategori.menu', ['id' => $kategori->id]) }}"
+                                            class="d-flex"><span>{{ $kategori->name }}</span> <span
+                                                class="text-black ml-auto">( {{ $kategori->jumlah }} )</span></a>
                                     </li>
                                 @endforeach
                             </ul>

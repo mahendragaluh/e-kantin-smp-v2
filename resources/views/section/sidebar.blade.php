@@ -87,15 +87,6 @@
                     </li>
                 @endif
                 @if (Auth::user()->level_id == '2')
-                    <li class="nav-item {{ request()->is('kasir-dashboard*') ? 'active menu-open' : '' }}">
-                        <a href="/kasir-dashboard"
-                            class="nav-link {{ request()->is('kasir-dashboard*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
                     <li
                         class="nav-item {{ request()->is('kasir/transaksi/pesanan-baru') || request()->is('kasir/transaksi/selesai') ? 'active menu-open' : '' }}">
                         <a href="#" class="nav-link {{ request()->is('kasir/transaksi*') ? 'active' : '' }}">
@@ -126,12 +117,11 @@
                     </li>
                 @endif
                 @if (Auth::user()->level_id == '3')
-                    <li class="nav-item {{ request()->is('dashboard-pengelola*') ? 'active menu-open' : '' }}">
-                        <a href="/dashboard-pengelola"
-                            class="nav-link {{ request()->is('dashboard-pengelola*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <li class="nav-item {{ request()->is('menu*') ? 'active menu-open' : '' }}">
+                        <a href="/menu" class="nav-link {{ request()->is('menu*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-utensils"></i>
                             <p>
-                                Dashboard
+                                Menu
                             </p>
                         </a>
                     </li>
